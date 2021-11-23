@@ -1,0 +1,89 @@
+<mvc:View controllerName="sunexpress.declarationform.controller.Detail" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns:footerbar="sap.ushell.ui.footerbar">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>detailTitle}"
+		busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
+		<semantic:content>
+			<ObjectHeader id="objectHeader" visible="{= ${EnabledValue>/Enabled} ? false : true }" title="{Reqnr}"></ObjectHeader>
+			<IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter id="iconTabBarFilter1" icon="sap-icon://form" tooltip="{i18n>detailIconTabBarInfo}">
+						<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12"
+							adjustLabelSpan="false" emptySpanXL="1" emptySpanL="1" emptySpanM="2" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+							singleContainerFullSize="false">
+							<f:content>
+								<Label text="{i18n>Country}" required="true"/>
+								<ComboBox width="20rem" enabled="{EnabledValue>/Enabled}" id="cbCountries">
+									<items>
+										<core:Item key="AUSTRIA" text="Austria"/>
+										<core:Item key="ENGLAND" text="England"/>
+										<core:Item key="FRANCE" text="France"/>
+										<core:Item key="GERMANY" text="Germany"/>
+										<core:Item key="IRAQ" text="Iraq"/>
+										<core:Item key="MOROCCO" text="Morocco"/>
+										<core:Item key="NORWAY" text="Norway"/>
+										<core:Item key="SAUDIA" text="Saudia"/>
+										<core:Item key="SWEDEN" text="Sweden"/>
+									</items>
+								</ComboBox>
+								<Label text="{i18n>Period}" required="true"/>
+								<Input value="{Declaration>/Period}" enabled="{EnabledValue>/Enabled}" width="20rem" maxLength="7" placeholder="mm/yyyy"/>
+								<Label text="{i18n>RelatedAuth}" required="true"/>
+								<Input value="{Declaration>/RelatedAuth}" enabled="{EnabledValue>/Enabled}" width="20rem" maxLength="60"/>
+								<Label text="{i18n>Detail}" required="true"/>
+								<TextArea value="{Declaration>/Detail}" maxLength="255" showExceededText="true" width="20rem" enabled="{EnabledValue>/Enabled}"/>
+								<Label text="{i18n>TotalAmount}" required="true"/>
+								<Input
+									value="{path:'Declaration>/TotalAmount',type: 'sap.ui.model.type.Float', formatOptions: {minFractionDigits: '2', maxFractionDigits: '2'}}"
+									enabled="{EnabledValue>/Enabled}" width="20rem" class="sapUiNoMarginEnd" maxLength="10"/>
+								<Label text="{i18n>Currency}" required="true"/>
+								<Input value="{Declaration>/Waers}" enabled="{EnabledValue>/Enabled}" width="20rem" maxLength="5" class="sapUiNoMarginBegin"
+									placeholder="Currency" valueHelpRequest="onValueHelpRequested" showValueHelp="true" valueHelpOnly="true"/>
+							</f:content>
+						</f:SimpleForm>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://approvals" tooltip="{i18n>Approvers}">
+						<Table id="approversTab" inset="false" items="{ApproversModel>/}">
+							<columns>
+								<Column width="20em">
+									<Text text="{i18n>Approver}"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="{i18n>ActionDate}"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<ObjectIdentifier title="{ApproversModel>FullName}" text="{ApproversModel>StatusText}"/>
+										<ObjectNumber
+											number="{ path: 'ApproversModel>Date', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }} { path: 'ApproversModel>Time', type: 'sap.ui.model.odata.type.Time', formatter:'.formatter.clearTime'} "
+											state="{ path: 'ApproversModel>Status', formatter: '.formatter.formatApproveState' }"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</IconTabFilter>
+					<IconTabFilter id="iconTabBarFilter2" icon="sap-icon://attachment" tooltip="{i18n>detailIconTabBarAttachments}">
+						<UploadCollection id="uploadCollection" items="{AttachmentsModel>/}" maximumFilenameLength="55" maximumFileSize="5" multiple="true"
+							noDataText="{i18n>UploadCollectionNoDataText}" uploadUrl="/sap/opu/odata/sap/ZFI_DECLARATION_FORM_SRV/AttachmentSet"
+							sameFilenameAllowed="true" instantUpload="false" showSeparators="All" filenameLengthExceed="onFilenameLengthExceed"
+							fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch" uploadComplete="onUploadCompleteCollection"
+							beforeUploadStarts="onBeforeUploadStarts" fileDeleted="onFileDeleted" change="onUploadCollectionChange"
+							fileType="PDF,XLS,XLSX,JPG,JPEG,PNG,TXT,PPT,PPTX,DOCX,DOC,ZIP,RAR,MP3,MP4,PNG" class="sapUiMediumMarginTop sapUiSmallMarginBottom">
+							<items>
+								<UploadCollectionItem documentId="{AttachmentsModel>DocumentId}" fileName="{AttachmentsModel>FileName}"
+									mimeType="{AttachmentsModel>MimeType}" thumbnailUrl="{thumbnailUrl}" enableDelete="{EnabledValue>/Enabled}"
+									url="{ path: 'AttachmentsModel>DocumentId', formatter:'.formatter.downloadLinkFormatter'}" deletePress="onFileDeleted"></UploadCollectionItem>
+							</items>
+						</UploadCollection>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</semantic:content>
+		<semantic:customFooterContent>
+			<Button id="buttonSave" text="{i18n>Save}" press="onSavePress" type="Accept" visible="{EnabledValue>/Enabled}"/>
+			<Button id="buttonCancel" text="{i18n>Cancel}" press="onCancelPress" visible="{EnabledValue>/Enabled}"/>
+			<Button id="buttonEdit" text="{i18n>Revise}" press="onRevisePress" visible="{EditVisible>/Visible}"/>
+		</semantic:customFooterContent>
+	</semantic:DetailPage>
+</mvc:View>

@@ -1,0 +1,22 @@
+{
+  "mockpreview": {
+    "mockUri": "",
+    "metadataFilePath": "",
+    "loadJSONFiles": false,
+    "loadCustomRequests": false,
+    "mockRequestsFilePath": ""
+  },
+  "deploy": {
+    "destination": "sunexpress",
+    "name": "ZFI_DECLR_FORM"
+  },
+  "projectType": [
+    "sap.watt.uitools.ide.fiori",
+    "com.watt.common.builder.sapui5clientbuild"
+  ],
+  "build": {
+    "buildRequired": true,
+    "targetFolder": "dist",
+    "lastBuildDateTime": "Fri, 20 Aug 2021 13:29:45 GMT"
+  }
+}
