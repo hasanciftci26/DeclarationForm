@@ -15,7 +15,7 @@ sap.ui.define([], function() {
 			}
 
 			return parseFloat(sValue).toFixed(2);
-		},
+		}, //controller branch formatter degisiklik
 		statusText: function(sValue) {
 			var vStatus = "";
 			switch (sValue) {
