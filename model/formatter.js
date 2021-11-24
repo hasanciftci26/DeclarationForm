@@ -15,8 +15,8 @@ sap.ui.define([], function() {
 			}
 
 			return parseFloat(sValue).toFixed(2);
-		},
-		statusText: function(sValue) { //Formatter change view branch
+		}, //controller branch formatter degisiklik
+		statusText: function(sValue) {
 			var vStatus = "";
 			switch (sValue) {
 				case "INIT":
