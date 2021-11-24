@@ -13,7 +13,7 @@ sap.ui.define([
 
 	return BaseController.extend("sunexpress.declarationform.controller.Master", {
 
-		formatter: formatter,
+		formatter: formatter, //Master controller degisiklik
 
 		/* =========================================================== */
 		/* lifecycle methods                                           */
