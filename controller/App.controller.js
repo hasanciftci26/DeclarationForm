@@ -6,7 +6,7 @@ sap.ui.define([
 
 		return BaseController.extend("sunexpress.declarationform.controller.App", {
 
-			onInit : function () {
+			onInit : function () { //Remote app controller degisikligi
 				var oViewModel,
 					fnSetAppNotBusy,
 					oListSelector = this.getOwnerComponent().oListSelector,
