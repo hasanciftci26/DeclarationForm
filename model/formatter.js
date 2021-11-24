@@ -16,7 +16,7 @@ sap.ui.define([], function() {
 
 			return parseFloat(sValue).toFixed(2);
 		},
-		statusText: function(sValue) {
+		statusText: function(sValue) { //Formatter change view branch
 			var vStatus = "";
 			switch (sValue) {
 				case "INIT":
