@@ -9,7 +9,7 @@ sap.ui.define([
 				var oModel = new JSONModel(Device);
 				oModel.setDefaultBindingMode("OneWay");
 				return oModel;
-			},
+			}, //controller branch
 
 			createFLPModel : function () {
 				var fnGetuser = jQuery.sap.getObject("sap.ushell.Container.getUser"),
