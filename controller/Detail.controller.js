@@ -445,6 +445,9 @@ sap.ui.define([
 				}
 			});
 		},
+		yeniFonksiyon: function() { //Yeni eklenen fonksiyon = dosyada değişiklik
+
+		},
 		_deleteBackendFile: function(oDeletedFile, vId, vIndex) {
 			var that = this;
 			var vDocumentId = oDeletedFile.DocumentId;
