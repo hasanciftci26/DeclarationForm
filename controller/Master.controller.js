@@ -23,7 +23,7 @@ sap.ui.define([
 		 * Called when the master list controller is instantiated. It sets up the event handling for the master/detail communication and other lifecycle tasks.
 		 * @public
 		 */
-		onInit: function() {
+		onInit: function() { //Bu kod remote'da eklendi
 			// Control state model
 			var oList = this.byId("list"),
 				oViewModel = this._createViewModel(),
